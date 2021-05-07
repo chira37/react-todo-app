@@ -3,8 +3,8 @@
 
 
 ```bash
-npm run
-# or
+
+yarn 
 yarn start
 ```
 
