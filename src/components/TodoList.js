@@ -1,6 +1,4 @@
-import { Box, Paper, Button, Typography, Grid, ButtonGroup, List, Divider } from "@material-ui/core";
-import DoneIcon from "@material-ui/icons/Done";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { Box, Typography, List } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TodoItem from "./TodoItem";
@@ -15,15 +13,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TodoList() {
-    const classes = useStyles();
-
     const { items } = useSelector((state) => state.todo);
 
     return (
         <List>
-            {items?.slice(0).reverse().map((item) => (
-                <TodoItem key={item.id} item={item} />
-            ))}
+            {items
+                ?.slice(0)
+                .reverse()
+                .map((item) => (
+                    <TodoItem key={item.id} item={item} />
+                ))}
 
             {items.length === 0 && (
                 <Typography>
