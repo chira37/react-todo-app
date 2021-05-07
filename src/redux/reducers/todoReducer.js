@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM, UPDATE_ITEM, MARK_COMPLETE } from "../actions/types";
+import { ADD_ITEM, REMOVE_ITEM, UPDATE_ITEM, MARK_COMPLETE, CLEAR_ALL } from "../actions/types";
 
 const initialState = {
     items: [],
@@ -21,21 +21,18 @@ export const todoReducer = (state = initialState, { type, data }) => {
         case UPDATE_ITEM:
             return {
                 ...state,
-                items: state.items.map((item) =>
-                    item.id === data.id
-                        ? { ...item, content: data.content }
-                        : item
-                ),
+                items: state.items.map((item) => (item.id === data.id ? { ...item, content: data.content } : item)),
             };
         case MARK_COMPLETE:
-            console.log("data")
             return {
                 ...state,
-                items: state.items.map((item) =>
-                    item.id === data
-                        ? { ...item,  complete: true }
-                        : item
-                ),
+                items: state.items.map((item) => (item.id === data ? { ...item, complete: true } : item)),
+            };
+
+        case CLEAR_ALL:
+            return {
+                ...state,
+                items: [],
             };
 
         default:
